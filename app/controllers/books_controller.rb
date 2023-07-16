@@ -18,7 +18,7 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
 
     if @book.save
-      redirect_to books_path, notice: "書籍新增成功"
+      redirect_to books_path, notice: "新增成功"
     else
       render :new
     end
@@ -33,10 +33,16 @@ class BooksController < ApplicationController
 
     book_params = params.require(:book).permit(:bookname, :description, :price, :page)
     if @book.update(book_params)
-      redirect_to books_path, notice: "文章更新成功"
+      redirect_to books_path, notice: "更新成功"
     else
       render :edit
     end
+  end
+
+  def destroy
+    @book = Book.find(params[:id])
+    @book.destroy
+    redirect_to books_path, notice: "刪除成功"
   end
 
 end
