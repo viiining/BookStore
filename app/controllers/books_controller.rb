@@ -1,10 +1,12 @@
 class BooksController < ApplicationController
+
+  before_action :find_book, only: [:show, :edit, :update, :destroy]
+
   def index
     @books = Book.order(id: :desc)
   end
 
   def show
-    find_book
   rescue ActiveRecord::RecordNotFound
     render file: Rails.root.join("public", "404.html"), status: 404, layout: false
   end
@@ -24,12 +26,9 @@ class BooksController < ApplicationController
   end
 
   def edit
-    find_book
   end
 
   def update
-    find_book
-
     if @book.update(book_params)
       redirect_to books_path, notice: "更新成功"
     else
@@ -38,7 +37,6 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    find_book
     @book.destroy
     redirect_to books_path, notice: "刪除成功"
   end
