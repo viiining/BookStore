@@ -1,24 +1,10 @@
-# README
+# BookStore
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Practice CRUD with Ruby on Rails
 
-Things you may want to cover:
+### Configuration
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- 書名 bookname: string -> validates :bookname, presence: true
+- 摘要 description: text
+- 頁數 page: Integer -> validates :page, presence: true, numericality: { greater_than: 0 }
+- 價錢 price: Integer -> validates :price, presence: true, numericality: { greater_than: 0 }
