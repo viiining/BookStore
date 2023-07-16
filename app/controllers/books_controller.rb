@@ -1,5 +1,12 @@
 class BooksController < ApplicationController
   def index
+    @books = Book.order(id: :desc)
+  end
+
+  def show
+      @book = Book.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render file: Rails.root.join("public", "404.html"), status: 404, layout: false
   end
 
   def new
