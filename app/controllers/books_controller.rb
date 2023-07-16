@@ -4,7 +4,7 @@ class BooksController < ApplicationController
   end
 
   def show
-      @book = Book.find(params[:id])
+    find_book
   rescue ActiveRecord::RecordNotFound
     render file: Rails.root.join("public", "404.html"), status: 404, layout: false
   end
@@ -25,11 +25,11 @@ class BooksController < ApplicationController
   end
 
   def edit
-    @book = Book.find(params[:id])
+    find_book
   end
 
   def update
-    @book = Book.find(params[:id])
+    find_book
 
     book_params = params.require(:book).permit(:bookname, :description, :price, :page)
     if @book.update(book_params)
@@ -40,9 +40,14 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    @book = Book.find(params[:id])
+    find_book
     @book.destroy
     redirect_to books_path, notice: "刪除成功"
   end
 
+  private
+
+  def find_book
+    @book = Book.find(params[:id])
+  end
 end
