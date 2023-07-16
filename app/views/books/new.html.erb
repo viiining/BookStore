@@ -1,0 +1,14 @@
+<h1>Add a new book!</h1>
+
+<form action="/books" method="post" data-turbo="false">
+  <div>
+    <h2>Book Name</h2>
+    <input type="text" name="bookname" >
+  </div>
+  <div>
+    <h2>Description</h2>
+    <textarea cols="30" rows="10" placeholder="Enter some description..."></textarea>
+  </div>
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  <button>Submit!</button>
+</form>
