@@ -1,17 +1,20 @@
 <h1>Add a new book!</h1>
 
-<%= form_with(model: @book, url: books_path) do |form| %>
-  <%= form.label :bookname %>
-  <%= form.text_field :bookname %>
+<%= form_with(model: @book, data: { turbo: false }) do |form| %>
+<h2>Book Name</h2>
+<%= form.text_field :bookname %>
 
-  <%= form.label :description %>
-  <%= form.text_area :description %>
 
-  <%= form.label :page %>
-  <%= form.number_field :page %>
+<h2>Description</h2>
+<%= form.text_area :description %>
 
-  <%= form.label :price %>
-  <%= form.number_field :price %>
+<h2>Page</h2>
+<%= form.number_field :page %>
 
-  <%= form.submit %>
+<h2>Price</h2>
+<%= form.number_field :price %>
+<div>
+  <%= form.button :submit %>
+</div>
 <% end %>
+
