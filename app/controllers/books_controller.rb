@@ -14,7 +14,6 @@ class BooksController < ApplicationController
   end
 
   def create
-    book_params = params.require(:book).permit(:bookname, :description, :price, :page)
     @book = Book.new(book_params)
 
     if @book.save
@@ -31,7 +30,6 @@ class BooksController < ApplicationController
   def update
     find_book
 
-    book_params = params.require(:book).permit(:bookname, :description, :price, :page)
     if @book.update(book_params)
       redirect_to books_path, notice: "更新成功"
     else
@@ -46,6 +44,9 @@ class BooksController < ApplicationController
   end
 
   private
+  def book_params
+    params.require(:book).permit(:bookname, :description, :price, :page)
+  end
 
   def find_book
     @book = Book.find(params[:id])
