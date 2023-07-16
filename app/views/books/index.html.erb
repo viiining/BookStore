@@ -7,6 +7,7 @@
       <%#= link_to article.title, article_path(article.id) %>
       <%#= link_to article.title, article_path(article) %>
       <%= link_to book.bookname, book %>
+      <span><%= link_to 'Updated', edit_book_path(book.id) %></span>
     </li>
   <% end %>
 </ul>
