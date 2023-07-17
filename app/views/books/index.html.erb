@@ -1,13 +1,19 @@
-<h1>Book Lists</h1>
-<button><%= link_to "Add a new book!", '/books/new' %></button>
-
-<ul>
+<article>
+  <h1>Book Store</h1>
+  <div class="index-button">
+    <button><%= link_to "Add a new book", '/books/new' %></button>
+  </div>
+  <ul>
   <% @books.each do |book| %>
     <li>
-      <%= link_to book.bookname, book %>
+      <div class="book-name">
+        <%= link_to book.bookname, book%>
+      </div>
+
       <span><%= link_to 'Updated', edit_book_path(book.id) %></span>
       <span><%= link_to 'Deleted', book_path(book.id),
       data: { turbo_method: 'delete', turbo_confirm: 'Are you sure?' }%></span>
     </li>
   <% end %>
-</ul>
+  </ul>
+</article>
